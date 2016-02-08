@@ -1,12 +1,77 @@
 body{
 	font-family:Verdana, Helvetica, sans-serif;
-	background-color: #ff8000;
+	background-color: #FF9966;
+	margin: 0;
 	
 }
 
 .center {
-    margin: auto;
     width: 60%;
     padding: 10px;
     text-align: center;
+    margin-left: 375px;
+    
+}
+
+.post{
+    margin-left: 375px;
+    margin-bottom: 50px;
+}
+h2 {
+	font-family: Papyrus, fantasy;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26px;
+}
+p{
+	font-family: Verdana, Helvetica, sans-serif;;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	margin-top: -15px;
+	margin-left: 20px;
+}
+blockquote{
+	font-family: Verdana, Helvetica, sans-serif;;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	margin-top: -10px;
+	margin-left: 20px;
+}
+
+ul {
+	font-family: Papyrus, fantasy;
+	font-size: 40px;
+	font-style: normal;
+	font-variant: normal;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #800000;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+li a {
+    display: block;
+    color: #ffffff;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+li a.active {
+    background-color: #FF9966;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #FF9966;
+    color: white;
 }

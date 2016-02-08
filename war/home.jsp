@@ -24,13 +24,10 @@
   <head>
    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
  </head>
-<div class="center">
- 	<h2>Welcome to a blog about all things Daniel Tiger.</h2>
-		<img src="images/homeimage.jpg" alt="Daniel Tiger's Neighborhood" align=middle style="width:800px;height:375px;">
-</div>
+
   <body>
 
- 
+
 
 <%
 
@@ -48,18 +45,15 @@
 
 %>
 
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
 
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-
-<form action="/newpost" method="post">
-
-      <div><input type="submit" value="New Post" name = "new post"/></div>
-
-
-</form>
-
-
+	<!-- <p>Hello, ${fn:escapeXml(user.nickname)}! </p> -->
+	
+	<ul>
+	  <li><a href="<%="home.jsp"%>">Home</a></li>
+	  <li><a href="<%="allposts.jsp"%>">All Posts</a></li>
+	  <li><a href="<%="NewPost.jsp"%>">New Post</a></li>
+	  <li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign Out</a></li>
+	</ul>
 
 <%
 
@@ -67,11 +61,13 @@
 
 %>
 
-<p>Hello!
-
-<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-
-to make a new post.</p>
+	<!-- <p>Hello! Sign in to make a new post.</p> -->
+	
+	<ul>
+	  <li><a href="<%="home.jsp"%>">Home</a></li>
+	  <li><a href="<%="allposts.jsp"%>">All Posts</a></li>
+	  <li><a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign In</a></li>
+	</ul>
 
      
 <%
@@ -79,7 +75,11 @@ to make a new post.</p>
     }
 
 %>
-
+ 
+ 	<div class="center">
+ 	<h2>Welcome to a blog about all things Daniel Tiger.</h2>
+		<img src="images/homeimage.jpg" alt="Daniel Tiger's Neighborhood" align=middle style="width:320px;height:150px;">
+	</div>
  
 
 <%
@@ -118,11 +118,11 @@ to make a new post.</p>
 			pageContext.setAttribute("post_date", post.getDate());
 			pageContext.setAttribute("post_title", post.getTitle());
 		%>
-				<h2><b>${fn:escapeXml(post_title)}</b></h2>
-                <b>by:${fn:escapeXml(post_user.nickname)}</b></p>
-                <i>${fn:escapeXml(post_date)}</i>
-               	<blockquote>${fn:escapeXml(post_content)}</blockquote>
-                
+				<div class="post">
+					<h2><b>${fn:escapeXml(post_title)}</b></h2>
+	                <p><b>by:${fn:escapeXml(post_user.nickname)}</b> <i>${fn:escapeXml(post_date)}</i> </p>
+	               	<blockquote>${fn:escapeXml(post_content)}</blockquote>
+                </div>
 				
         <%
 	}

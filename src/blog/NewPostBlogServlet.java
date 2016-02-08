@@ -43,5 +43,6 @@ public class NewPostBlogServlet extends HttpServlet {
 			response.sendRedirect("/home.jsp");
 		}
 
+
 	}
 }
