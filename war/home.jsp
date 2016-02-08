@@ -17,7 +17,6 @@
 
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
  
 
 <html>
@@ -53,6 +52,15 @@
 
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 
+<form action="/newpost" method="post">
+
+      <div><input type="submit" value="New Post" name = "new post"/></div>
+
+
+</form>
+
+
+
 <%
 
     } else {
@@ -65,6 +73,7 @@
 
 to make a new post.</p>
 
+     
 <%
 
     }
@@ -75,27 +84,18 @@ to make a new post.</p>
 
 <%
 
-    //DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
-    //Key guestbookKey = KeyFactory.createKey("Guestbook", guestbookName);
-
-    // Run an ancestor query to ensure we see the most up-to-date
-
-    // view of the Greetings belonging to the selected Guestbook.
-
-    //Query query = new Query("Greeting", guestbookKey).addSort("date", Query.SortDirection.DESCENDING);
-
-    //List<Entity> greetings = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(5));
 
 	ObjectifyService.register(Post.class);
 	
-	List<Post> greetings = ObjectifyService.ofy().load().type(Post.class).list(); 
+	List<Post> posts = ObjectifyService.ofy().load().type(Post.class).list(); 
 	  
 
-	Collections.sort(greetings); 
+	Collections.sort(posts); 
+	posts = posts.subList(0, 3 > posts.size() ? posts.size() : 3);
+
 	
     
-    if (greetings.isEmpty()) {
+    if (posts.isEmpty()) {
 
         %>
 
@@ -107,52 +107,31 @@ to make a new post.</p>
 
         %>
 
-        <p>Posts in blog.</p>
+        <p>Posts</p>
 
         <%
         
 
-        for (Post greeting : greetings) {
-            pageContext.setAttribute("greeting_content",
+        for (Post post : posts) {
+            pageContext.setAttribute("post_content",post.getContent());
+			pageContext.setAttribute("post_user", post.getUser());
+			pageContext.setAttribute("post_date", post.getDate());
+			pageContext.setAttribute("post_title", post.getTitle());
+		%>
+				<h2><b>${fn:escapeXml(post_title)}</b></h2>
+                <b>by:${fn:escapeXml(post_user.nickname)}</b></p>
+                <i>${fn:escapeXml(post_date)}</i>
+               	<blockquote>${fn:escapeXml(post_content)}</blockquote>
+                
+				
+        <%
+	}
+     
 
-                                     greeting.getContent());
-
-            if (greeting.getUser() == null) {
-
-                %>
-
-                <p>An anonymous person wrote:</p>
-
-                <%
-
-            } else {
-
-                pageContext.setAttribute("greeting_user",
-
-                                         greeting.getUser());
-
-                %>
-
-                <p><b>${fn:escapeXml(greeting_user.nickname)}</b> wrote:</p>
-
-                <%
-
-            }
-
-            %>
-
-            <blockquote>${fn:escapeXml(greeting_content)}</blockquote>
-
-            <%
-
-        }
-
-    }
+}
 
 %>
 
- 
- 
 
   </body>
 
