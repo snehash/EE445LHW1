@@ -26,17 +26,26 @@
 	pageContext.setAttribute("user", user);
 %>
 
-<form action="/newpost" method="post">
-  Title<br>
-  <input type="text" name="title"><br>
-  Author: ${fn:escapeXml(user.nickname)} <br> 
-  Content: <br>
-  <div><textarea name="content" rows="30" cols="100"></textarea></div>
-  <div><input type="submit" value="Submit" name="submit" /></div>
-  <div><input type="submit" value="Cancel" name="cancel" /></div>
+<ul>
+  <li><a href="<%="home.jsp"%>">Home</a></li>
+  <li><a href="<%="allposts.jsp"%>">All Posts</a></li>
+  <li><a href="<%="NewPost.jsp"%>">New Post</a></li>
+</ul>
+
+<div class="center">
+ 	<h2>Write a New Post</h2>
+</div>
+
+<form action="/newpost" method="post" id="new post">
+  <input type="text" name="title" placeholder="Title">
+  <h6><b>by: ${fn:escapeXml(user.nickname)}</b> </h6>
+  <div><textarea name="content" rows="23" cols="100" placeholder="Place Content of Post Here"></textarea></div>
+  <div><input type="submit" value="Submit" name="submit" /> <input type="submit" value="Cancel" name="cancel" /></div>
   
   
 </form>
+
+
 
 
 

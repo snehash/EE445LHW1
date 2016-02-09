@@ -16,14 +16,18 @@ body{
 .post{
     margin-left: 375px;
     margin-bottom: 50px;
+    margin-top: 50px;
 }
 h2 {
 	font-family: Papyrus, fantasy;
-	font-size: 24px;
+	font-size: 45px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
-	line-height: 26px;
+	line-height: 50px;
+	margin-bottom: 20px;
+	
+
 }
 p{
 	font-family: Verdana, Helvetica, sans-serif;;
@@ -36,12 +40,12 @@ p{
 }
 blockquote{
 	font-family: Verdana, Helvetica, sans-serif;;
-	font-size: 10px;
+	font-size: 15px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
 	margin-top: -10px;
-	margin-left: 20px;
+	margin-left: 0px;
 }
 
 ul {
@@ -74,4 +78,70 @@ li a.active {
 li a:hover:not(.active) {
     background-color: #FF9966;
     color: white;
+}
+
+form{
+	margin-left: 375px;
+    margin-bottom: 50px;
+}
+
+#post{
+	margin-left: 25px;
+    margin-bottom: 50px;
+}
+
+input[type="text"] {
+    font-size:25px;
+    font-family: Papyrus, fantasy;
+    background-color: #800000;
+    color:white;
+    width: 83%;
+    margin-top: -20px;
+}
+h5{
+	font-family: Papyrus, fantasy;
+	font-size: 30px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26px;
+	margin-bottom: -5px;
+	margin-top:-30px;
+}
+h6{
+	font-family: Papyrus, fantasy;
+	font-size: 15px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	margin-top: 5px;
+	margin-left: 20px;
+	margin-bottom:5px;
+}
+textarea{
+	font-family: Verdana, Helvetica, sans-serif;;
+	font-size:15px;
+    background-color: #800000;
+    color:white;
+    width: 83%;
+}
+
+input[type="submit"] {
+    font-size:15px;
+    font-family: Papyrus, fantasy;
+    background-color: #800000;
+    color:white;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+#del{
+    font-size:8px;
+    font-family: Papyrus, fantasy;
+    background-color: #800000;
+    text-color:white;
+    margin-top: 10px;
+    border-color: #800000;
+    border-radius: 5px; border:0 none;
+
 }

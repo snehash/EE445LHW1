@@ -77,7 +77,7 @@
 %>
  
  	<div class="center">
- 	<h2>Welcome to a blog about all things Daniel Tiger.</h2>
+ 	<h2>Daniel Tiger's Blog</h2>
 		<img src="images/homeimage.jpg" alt="Daniel Tiger's Neighborhood" align=middle style="width:320px;height:150px;">
 	</div>
  

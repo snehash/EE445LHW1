@@ -4,8 +4,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
 
 import com.google.appengine.api.users.User;
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -17,6 +19,7 @@ public class Post implements Comparable<Post> {
 	String title;
 	String content;
 	Date date;
+	static long id_no = 0;
 	private Post(){}
 	public Post(User user, String content,String title){
 		this.author= user;
@@ -35,6 +38,9 @@ public class Post implements Comparable<Post> {
 
 	public String getTitle(){
 		return title;
+	}
+	public Key<Post> getKey() {
+		   return Key.create(Post.class, id);
 	}
 	
 	public String getDate(){
