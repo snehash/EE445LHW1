@@ -25,6 +25,8 @@
    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
  </head>
 
+ 
+
   <body>
 
 
@@ -44,18 +46,56 @@
 %>
 
 
-	<!-- <p>Hello, ${fn:escapeXml(user.nickname)}! </p> -->
-	
-	<ul>
-	  <li><a href="<%="home.jsp"%>">Home</a></li>
-	  <li><a href="<%="allposts.jsp"%>">All Posts</a></li>
-	  <li><a href="<%="NewPost.jsp"%>">New Post</a></li>
-	  <li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign Out</a></li>
-	</ul>
+			<!-- <p>Hello, ${fn:escapeXml(user.nickname)}! </p> -->
+			
+			<ul>
+			  <li><a href="<%="home.jsp"%>">Home</a></li>
+			  <li><a href="<%="allposts.jsp"%>">All Posts</a></li>
+			  <li><a href="<%="NewPost.jsp"%>">New Post</a></li>
+			  <li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign Out</a></li>
+			</ul>
+			
+			<div class="center">
+		 	<h2>All Posts</h2>
+			</div>
+			<% 
+			ObjectifyService.register(Post.class);
+			
+			List<Post> posts = ObjectifyService.ofy().load().type(Post.class).list(); 
+			  
+		
+			Collections.sort(posts); 
+	   
+	        for (Post post : posts) {
+	            pageContext.setAttribute("post_content",post.getContent());
+				pageContext.setAttribute("post_user", post.getUser());
+				pageContext.setAttribute("post_date", post.getDate());
+				pageContext.setAttribute("post_title", post.getTitle());
+				//pageContext.setAttribute("post_no", Integer.toString(posts.indexOf(post)));
+	        
+					
+			%>
+				
+				<form action="/newpost" method="post" id="post">
+						<div class="post">
+							<h2 name="post_title"><b>${fn:escapeXml(post_title)}</b></h2>
+			                <p name="post_user"><b>by:${fn:escapeXml(post_user.nickname)}</b> <i>${fn:escapeXml(post_date)}</i> </p>
+			               	<blockquote name="post_content">${fn:escapeXml(post_content)}</blockquote>
+				 			<input type="submit" value="Delete Post" name="delete" id="del" /> 
+				 			<!-- <input type="submit" value="Edit Post" name="edit"  id="del"/> -->
+				 			<input type="hidden" name="post_no" id="post_no" value="<%=posts.indexOf(post)%>" />
+				 			
+		                </div>
+		        	</form>
+						
+		        <%
+	        }
+		}
+     
 
-<%
 
-    } else {
+
+    else {
 
 %>
 
@@ -66,43 +106,19 @@
 	  <li><a href="<%="allposts.jsp"%>">All Posts</a></li>
 	  <li><a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign In</a></li>
 	</ul>
-
-     
-<%
-
-    }
-
-%>
- 
- 	<div class="center">
+	
+	 <div class="center">
  	<h2>All Posts</h2>
 	</div>
- 
-
-<%
-
-
+	
+	<% 
 	ObjectifyService.register(Post.class);
 	
 	List<Post> posts = ObjectifyService.ofy().load().type(Post.class).list(); 
 	  
 
 	Collections.sort(posts); 
-    if (posts.isEmpty()) {
-
-        %>
-
-        <p>There are no posts in this Blog.</p>
-
-        <%
-
-    } else {
-
-        %>
-
-        <p>Posts</p>
-
-        <%
+   
         
         for (Post post : posts) {
             pageContext.setAttribute("post_content",post.getContent());
@@ -110,6 +126,7 @@
 			pageContext.setAttribute("post_date", post.getDate());
 			pageContext.setAttribute("post_title", post.getTitle());
 			//pageContext.setAttribute("post_no", Integer.toString(posts.indexOf(post)));
+			
 		%>
 		
 		<form action="/newpost" method="post" id="post">
@@ -117,8 +134,8 @@
 					<h2 name="post_title"><b>${fn:escapeXml(post_title)}</b></h2>
 	                <p name="post_user"><b>by:${fn:escapeXml(post_user.nickname)}</b> <i>${fn:escapeXml(post_date)}</i> </p>
 	               	<blockquote name="post_content">${fn:escapeXml(post_content)}</blockquote>
-		 			<input type="submit" value="Delete Post" name="delete" id="del" /> 
-		 			<input type="submit" value="Edit Post" name="edit"  id="del"/>
+		 			<!-- <input type="submit" value="Delete Post" name="delete" id="del" /> -->
+		 			<!-- <input type="submit" value="Edit Post" name="edit"  id="del"/> -->
 		 			<input type="hidden" name="post_no" id="post_no" value="<%=posts.indexOf(post)%>" />
 		 			
                 </div>
@@ -130,7 +147,17 @@
 
 }
 
+
+    
+
 %>
+
+ 
+
+
+
+
+	
 
 
   </body>
